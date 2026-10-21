@@ -145,7 +145,7 @@ const NAV = [
     ["impl","Implantação","Seis etapas, prontidão e parâmetros a pactuar"],
     ["riscos","Riscos","Ameaças, sinais de alerta e modo contingência"]]},
   {g:"Consultar", items:[
-    ["documentos","Documentos","Os seis documentos da família, em PDF e Word"]]}
+    ["documentos","Documentos","Os quatro documentos de referência, em PDF e Word"]]}
 ];
 const VIEWS = [];
 NAV.forEach(g => g.items.forEach(it => VIEWS.push({id:it[0], n:it[1], d:it[2], g:g.g})));
@@ -935,9 +935,7 @@ const DOCS = [
   {k:"Protocolo", t:"Protocolo de Inteligência Territorial", d:"Fundamentos teórico-metodológicos, transversalidade, interfaces com os quatro eixos da PICAPS e protocolo de atuação.", p:54, f:"Protocolo_de_Inteligencia_Territorial_v2", mb:[4.6, 2.6]},
   {k:"Guia operacional", t:"Protocolo Operacional da Inteligência Territorial", d:"Guia metodológico de atuação: procedimentos, roteiros, listas de verificação e parâmetros. É a base desta aplicação.", p:31, f:"Protocolo_Operacional_da_Inteligencia_Territorial_v2", mb:[2.1, 1.4]},
   {k:"Índice · guia metodológico", t:"Índice de Vulnerabilidade Territorial (IVT)", d:"Cálculo intraterritorial a partir de registros contínuos da atenção primária e da proteção social, ancorado no Censo Demográfico e verificado pela cartografia social.", p:34, f:"Guia_do_IVT_v2", mb:[1.8, 1.3]},
-  {k:"Índice · projeto técnico", t:"Índice de Necessidade de Saúde (INS)", d:"Recorte Municipal (INS-M) e Distrital (INS-DF): discussão teórico-metodológica, cesta de indicadores e metodologia de cálculo.", p:41, f:"Projeto_INS_v2", mb:[1.5, 1.1]},
-  {k:"Projeto de pesquisa", t:"Vigilância popular e governança participativa territorial em saúde", d:"Estudo qualitativo longitudinal da implementação da metodologia PICAPS no Sol Nascente/Pôr do Sol, Distrito Federal.", p:30, f:"Projeto_PICAPS_qualitativo", mb:[0.9, 0.8]},
-  {k:"Projeto de pesquisa", t:"Determinantes sociais da saúde, vigilância popular e governança participativa territorial", d:"Estudo de caso de métodos mistos da implementação da metodologia PICAPS no Sol Nascente/Pôr do Sol, Distrito Federal.", p:48, f:"Projeto_PICAPS_metodos_mistos", mb:[1.2, 0.8]}
+  {k:"Índice · projeto técnico", t:"Índice de Necessidade de Saúde (INS)", d:"Recorte Municipal (INS-M) e Distrital (INS-DF): discussão teórico-metodológica, cesta de indicadores e metodologia de cálculo.", p:41, f:"Projeto_INS_v2", mb:[1.5, 1.1]}
 ];
 const AUTH = "Wagner de Jesus Martins, Fernanda Machiner, Maria Eduarda Silva, Jeferson Martins de Castro";
 function renderDocs(){

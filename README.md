@@ -23,7 +23,7 @@ O protocolo articula a **vigilância epidemiológica tradicional** e a **vigilâ
 | 09 | Painel PVI | Metas, leitura e gatilhos dos nove indicadores do Painel de Vigilância Integrada |
 | 10 | Agenda | Os ritmos distribuídos a partir do início do ciclo e do dia fixo da reunião |
 | 11–14 | Papéis, Governança, Implantação, Riscos | Consulta por ator, simulador de escalonamento, prontidão e parâmetros a pactuar, ameaças e modo contingência |
-| 15 | Documentos | Os seis documentos da família, em PDF e Word |
+| 15 | Documentos | Os quatro documentos de referência, em PDF e Word |
 
 ## Como usar
 
@@ -52,7 +52,7 @@ assets/css/style.css       identidade visual (série PICAPS) e layout responsivo
 assets/js/app.js           conteúdo do protocolo e lógica das ferramentas
 assets/fonts/              Barlow e Barlow Condensed (SIL Open Font License)
 assets/img/figs/           figuras do protocolo
-docs/                      os seis documentos em PDF e Word
+docs/                      os quatro documentos de referência em PDF e Word
 ```
 
 O conteúdo do protocolo está em constantes no `assets/js/app.js` (`FUND`, `RULES`, `PHASES`, `LSQ`, `REG`, `VTIPOS`, `BLOCKS`, `PV`, `ACTORS`, `SITS`, `STAGES`, `THREATS`, `DOCS`), e cada uma pode ser editada sem mexer na lógica.
