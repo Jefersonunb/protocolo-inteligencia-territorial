@@ -170,7 +170,8 @@ function show(v, opts){
   const changed = v !== curView;
   curView = v; S.set("view", v);
   document.querySelectorAll(".view").forEach(s => { s.hidden = s.id !== "v-" + v; });
-  document.querySelectorAll(".nav-a").forEach(a => { if(a.dataset.go === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  document.querySelectorAll(".nav-a, .top-docs").forEach(a => { if(a.dataset.go === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+  labelTables();
   const vv = VIEWS.find(x => x.id === v);
   document.title = (vv && v !== "inicio" ? vv.n + " · " : "") + "Protocolo de Inteligência Territorial · PICAPS";
   if(location.hash.slice(1) !== v) history.replaceState(null, "", "#" + v);
@@ -189,6 +190,15 @@ function initNav(){
   $("#menuBtn").addEventListener("click", () => setNav(!document.body.classList.contains("nav-open")));
   $("#scrim").addEventListener("click", () => setNav(false));
   document.addEventListener("keydown", e => { if(e.key === "Escape"){ if(!$("#lightbox").hidden) closeLb(); else setNav(false); } });
+}
+
+/* tabelas empilhadas no celular: cada célula recebe o rótulo da coluna */
+function labelTables(){
+  document.querySelectorAll("table.dt").forEach(t => {
+    const hs = [...t.querySelectorAll("thead th")].map(th => th.textContent.trim());
+    if(!hs.length) return;
+    t.querySelectorAll("tbody tr").forEach(tr => [...tr.cells].forEach((td, i) => { if(!tr.classList.contains("band")) td.setAttribute("data-label", hs[i] || ""); }));
+  });
 }
 
 /* ---------- figuras e ampliação ---------- */
@@ -668,17 +678,23 @@ function buildAgenda(){
   }
   return ev.filter(e => e.d >= addDays(st, -7)).sort((a, b) => a.d - b.d);
 }
+const agOff = new Set();
+function filterAgenda(){
+  document.querySelectorAll("#agList .evt").forEach(e => { const r = (e.querySelector(".chip").className.match(/r-(\w+)/) || [])[1]; e.hidden = agOff.has(r); });
+  document.querySelectorAll("#agList .month").forEach(m => { m.hidden = ![...m.querySelectorAll(".evt")].some(e => !e.hidden); });
+}
 function renderAgenda(){
   $("#agStart").value = ag.start; $("#agNth").value = ag.nth; $("#agDow").value = ag.dow; $("#agMonths").value = ag.months;
-  $("#agLegend").innerHTML = Object.keys(RIT).map(r => '<span class="chip dot r-' + r + '">' + RIT[r] + "</span>").join("");
+  $("#agLegend").innerHTML = Object.keys(RIT).map(r => '<button type="button" class="chip dot r-' + r + '" data-rit="' + r + '" aria-pressed="' + !agOff.has(r) + '" title="Mostrar ou ocultar o ritmo ' + RIT[r].toLowerCase() + '">' + RIT[r] + "</button>").join("");
   $("#agWeek").innerHTML = WEEK.map(w => '<div class="item"><div class="hd"><b>' + w[0] + '</b><span class="chip r-' + w[3] + '">' + RIT[w[3]] + '</span></div><span class="small">' + w[1] + ' <span class="note">· ' + w[2] + "</span></span></div>").join("");
   const ev = buildAgenda(), by = {};
   ev.forEach(e => { const key = e.d.getFullYear() + "-" + pad(e.d.getMonth()); (by[key] = by[key] || []).push(e); });
   $("#agList").innerHTML = Object.keys(by).sort().map(k => { const [y, m] = k.split("-").map(Number); return '<div class="month"><div class="mh">' + MESES[m] + " " + y + '</div><div class="evts">' + by[k].map(e => '<div class="evt' + (e.big ? " big" : "") + '"><span class="when">' + DOWS[e.d.getDay()] + " " + pad(e.d.getDate()) + '/' + pad(e.d.getMonth() + 1) + '</span><span class="what"><span class="chip r-' + e.r + '">' + RIT[e.r] + '</span><span class="t">' + e.t + '</span><span class="who">' + e.w + "</span></span></div>").join("") + "</div></div>"; }).join("");
 }
 function initAgenda(){
-  renderAgenda();
-  ["agStart","agNth","agDow","agMonths"].forEach(id => $("#" + id).addEventListener("change", () => { ag.start = $("#agStart").value || iso(today); ag.nth = +$("#agNth").value; ag.dow = +$("#agDow").value; ag.months = +$("#agMonths").value; S.set("ag", ag); renderAgenda(); }));
+  renderAgenda(); filterAgenda();
+  $("#agLegend").addEventListener("click", e => { const b = e.target.closest("[data-rit]"); if(!b) return; const r = b.dataset.rit; agOff.has(r) ? agOff.delete(r) : agOff.add(r); b.setAttribute("aria-pressed", !agOff.has(r)); filterAgenda(); });
+  ["agStart","agNth","agDow","agMonths"].forEach(id => $("#" + id).addEventListener("change", () => { ag.start = $("#agStart").value || iso(today); ag.nth = +$("#agNth").value; ag.dow = +$("#agDow").value; ag.months = +$("#agMonths").value; S.set("ag", ag); renderAgenda(); filterAgenda(); }));
   $("#agCopy").addEventListener("click", async e => { const t = "AGENDA DO CICLO DE INTELIGÊNCIA TERRITORIAL\n\nSemana-tipo:\n" + WEEK.map(w => "- " + w[0] + ": " + w[1] + " (" + w[2] + ")").join("\n") + "\n\n" + buildAgenda().map(x => fmtD(x.d) + " [" + RIT[x.r] + "] " + x.t + " — " + x.w).join("\n"); const ok = await copyText(t); flash(e.target, ok ? "Copiada ✓" : "Não foi possível copiar"); });
 }
 

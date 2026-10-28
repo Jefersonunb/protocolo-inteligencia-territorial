@@ -492,3 +492,91 @@ details.acc .accb{padding:0 18px 18px;display:grid;gap:12px}
   .shell{display:block} body{background:#fff}
   .view[hidden]{display:block!important}
 }
+
+/* =========================================================================
+   v2.3 · Alinhamento com o sistema visual da aplicação do manual
+   (faixa de assinatura, cabeçalho em duas linhas, indicadores na capa,
+   títulos internos compactos, etiqueta verde, destaque em verde-folha,
+   tabelas empilhadas no celular e modo escuro). Paleta PICAPS preservada.
+   ========================================================================= */
+:root{--top:66px}
+.topbar{box-shadow:none;padding-bottom:5px}
+.topbar::after{content:"";position:absolute;left:0;right:0;bottom:0;height:5px;
+  background:linear-gradient(90deg,var(--green-2) 0 33.34%,var(--leaf) 33.34% 66.67%,var(--navy-2) 66.67% 100%)}
+.brand-txt{display:flex;flex-direction:column;min-width:0;line-height:1.1}
+.brand-k{font-family:var(--font-display);font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--leaf);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand-t{font-size:20px}
+.top-docs:hover,.top-docs[aria-current="page"]{background:var(--leaf);border-color:var(--leaf);color:var(--navy)}
+/* títulos internos e etiqueta */
+h2{font-size:clamp(28px,3.1vw,38px)}
+.kicker{background:var(--green)}
+.kicker .n{color:#D6F0DC}
+/* indicadores da capa */
+.kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:18px}
+.kpi-c{display:grid;gap:2px;align-content:start;background:var(--sheet);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px;text-decoration:none;color:var(--ink);transition:border-color .15s, transform .15s}
+.kpi-c:hover{border-color:var(--navy);transform:translateY(-2px)}
+.kpi-c b{font-family:var(--font-display);font-weight:700;font-size:38px;line-height:1;color:var(--green)}
+.kpi-c span{font-weight:600;color:var(--navy)}
+.kpi-c small{font-size:13px;color:var(--grey)}
+/* filtro da agenda */
+#agLegend button.chip{appearance:none;border:1.5px solid transparent;cursor:pointer;font:inherit;font-size:13px;font-weight:600}
+#agLegend button.chip[aria-pressed="true"]{border-color:var(--c)}
+#agLegend button.chip[aria-pressed="false"]{opacity:.45}
+@media (max-width:980px){:root{--top:60px}.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:640px){
+  .brand-k{display:none}
+  .brand-t{font-size:17px}
+  h2{font-size:30px}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kpi-c b{font-size:30px}
+  /* tabelas empilhadas */
+  .tbl-wrap table.dt{min-width:0}
+  table.dt thead{display:none}
+  table.dt,table.dt tbody,table.dt tr,table.dt td{display:block;width:100%}
+  table.dt tr{border:1px solid var(--line);border-radius:10px;margin-bottom:10px;overflow:hidden;background:var(--sheet)}
+  table.dt tbody tr:nth-child(even) td{background:transparent}
+  table.dt td{border-bottom:1px solid var(--line-2)}
+  table.dt td:last-child{border-bottom:0}
+  table.dt td[data-label]:not([data-label=""])::before{content:attr(data-label);display:block;font-family:var(--font-display);font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-bottom:2px}
+  table.dt tr.band td{border-radius:0}
+  table.dt{border-bottom:0}
+}
+/* ---------- modo escuro ---------- */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ink:#E6ECF3; --ink-2:#C2CCD8; --grey:#9DA9B6; --grey-2:#7D8995; --line:#2C3A4D; --line-2:#243143;
+    --tn:#16263C; --tg:#14281C; --off:#0D1622; --white:#141F2E; --sheet:#141F2E; --navy:#7FB0F0; --navy-2:#5B8FD0;
+    --green:#4FB866; --green-2:#3E9E57; --leaf:#6FCB86;
+  }
+  :root:not([data-theme="light"]) body{background-image:none}
+  :root:not([data-theme="light"]) .topbar,:root:not([data-theme="light"]) .doc .dh,:root:not([data-theme="light"]) .defbox,
+  :root:not([data-theme="light"]) .foot-in,:root:not([data-theme="light"]) .nav-a[aria-current="page"],
+  :root:not([data-theme="light"]) table.dt th,:root:not([data-theme="light"]) table.edit th,:root:not([data-theme="light"]) table.uic th,
+  :root:not([data-theme="light"]) .matrix thead th,:root:not([data-theme="light"]) .skip{background:#0B2A55;color:#fff}
+  :root:not([data-theme="light"]) .btn.primary,:root:not([data-theme="light"]) .seg button[aria-pressed="true"],
+  :root:not([data-theme="light"]) .actor-pick button[aria-pressed="true"],:root:not([data-theme="light"]) .pills button[aria-selected="true"],
+  :root:not([data-theme="light"]) .think span:nth-child(7){background:#1F5A93;border-color:#1F5A93;color:#fff}
+  :root:not([data-theme="light"]) .modcard,:root:not([data-theme="light"]) .commit > div,:root:not([data-theme="light"]) .fig,
+  :root:not([data-theme="light"]) .item,:root:not([data-theme="light"]) .opt,:root:not([data-theme="light"]) .seg,
+  :root:not([data-theme="light"]) .seg button,:root:not([data-theme="light"]) input,:root:not([data-theme="light"]) select,
+  :root:not([data-theme="light"]) textarea,:root:not([data-theme="light"]) .mx .c,:root:not([data-theme="light"]) .st,
+  :root:not([data-theme="light"]) .blk,:root:not([data-theme="light"]) .level,:root:not([data-theme="light"]) .five div,
+  :root:not([data-theme="light"]) details.acc,:root:not([data-theme="light"]) .doc,:root:not([data-theme="light"]) .actor-pick button,
+  :root:not([data-theme="light"]) .pills button,:root:not([data-theme="light"]) .btn,:root:not([data-theme="light"]) .hero,
+  :root:not([data-theme="light"]) .meta div{background:var(--sheet);color:var(--ink)}
+  :root:not([data-theme="light"]) .btn.light{background:rgba(20,31,46,.8)}
+  :root:not([data-theme="light"]) .hero::before{opacity:.12}
+  :root:not([data-theme="light"]) .sidebar{background:rgba(13,22,34,.95)}
+  :root:not([data-theme="light"]) .chip,:root:not([data-theme="light"]) .status-box,:root:not([data-theme="light"]) .result-card,
+  :root:not([data-theme="light"]) .rp{background:color-mix(in srgb, var(--c, var(--grey)) 20%, var(--sheet))}
+  :root:not([data-theme="light"]) .chip{color:color-mix(in srgb, var(--c, var(--grey)) 55%, #fff)}
+  :root:not([data-theme="light"]) .fig img,:root:not([data-theme="light"]) .lb-img img,:root:not([data-theme="light"]) .logos{background:#fff;border-radius:8px}
+  :root:not([data-theme="light"]) .cover-title,:root:not([data-theme="light"]) .hero-sub,:root:not([data-theme="light"]) .hero-auth{color:var(--navy)}
+  :root:not([data-theme="light"]) .cover-title .g{color:var(--green)}
+  :root:not([data-theme="light"]) .top-docs:hover,:root:not([data-theme="light"]) .top-docs[aria-current="page"]{color:#0B2A55}
+}
+#agList .evt[hidden],#agList .month[hidden]{display:none}
+/* capa mais compacta, com os indicadores logo abaixo */
+.hero{min-height:0}
+.hero-art{min-height:clamp(160px,18vw,230px)}
