@@ -28,7 +28,7 @@ O protocolo articula a **vigilância epidemiológica tradicional** e a **vigilâ
 ## Como usar
 
 - **Na internet:** abra o endereço do GitHub Pages do repositório.
-- **No computador, sem internet:** baixe o repositório (*Code → Download ZIP*), descompacte e dê dois cliques em `index.html`. As fontes Barlow estão incluídas em `assets/fonts`, então a identidade visual se mantém sem conexão. Se o navegador restringir arquivos locais, rode um servidor simples na pasta:
+- **No computador, sem internet:** baixe o repositório (*Code → Download ZIP*), descompacte-o e abra `index.html` com dois cliques. As fontes Barlow estão incluídas em `assets/fonts`, de modo que a identidade visual se mantém sem conexão. Se o navegador restringir arquivos locais, execute um servidor local na pasta:
 
   ```bash
   python3 -m http.server 8000
@@ -36,11 +36,11 @@ O protocolo articula a **vigilância epidemiológica tradicional** e a **vigilâ
 
   e abra <http://localhost:8000>.
 
-Funciona em celular, tablet e computador. Cada módulo tem endereço próprio (por exemplo, `#ciclo`, `#reuniao`), útil para mandar o link direto de uma ferramenta.
+A aplicação funciona em celular, tablet e computador. Cada módulo tem endereço próprio (por exemplo, `#ciclo`, `#reuniao`), o que permite compartilhar o link de uma ferramenta específica.
 
 ## Dados e privacidade
 
-- Os registros (alertas, reuniões, encaminhamentos, painel, checklists) ficam **apenas no navegador de quem usa** (`localStorage`, prefixo `itp2:`). Nada é enviado a servidor algum, nem quando o site está no GitHub Pages.
+- Os registros (alertas, reuniões, encaminhamentos, painel, checklists) ficam **apenas no navegador do usuário** (`localStorage`, prefixo `itp2:`). Nenhum dado é enviado a servidor, mesmo com o site publicado no GitHub Pages.
 - Use **Exportar meus registros (.json)**, em *Dados e privacidade*, para fazer cópia de segurança ou levar os dados para outro aparelho, e **Importar registros** para restaurá-los. Arquivos exportados pela versão anterior (`protocolo-atuacao-it`) também são aceitos.
 - **Não registre dados nominais de saúde.** A aplicação é instrumento de apoio e de formação; não substitui a Plataforma Ágora nem os sistemas oficiais.
 
@@ -55,7 +55,7 @@ assets/img/figs/           figuras do protocolo
 docs/                      os três documentos de referência em PDF e Word
 ```
 
-O conteúdo do protocolo está em constantes no `assets/js/app.js` (`FUND`, `RULES`, `PHASES`, `LSQ`, `REG`, `VTIPOS`, `BLOCKS`, `PV`, `ACTORS`, `SITS`, `STAGES`, `THREATS`, `DOCS`), e cada uma pode ser editada sem mexer na lógica.
+O conteúdo do protocolo está em constantes no `assets/js/app.js` (`FUND`, `RULES`, `PHASES`, `LSQ`, `REG`, `VTIPOS`, `BLOCKS`, `PV`, `ACTORS`, `SITS`, `STAGES`, `THREATS`, `DOCS`), e cada uma pode ser editada sem alterar a lógica.
 
 ## Como citar
 
