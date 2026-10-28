@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Aplicação interativa do Protocolo de Inteligência Territorial da PICAPS (versão 2.0): articulação entre a vigilância epidemiológica tradicional e a vigilância popular em saúde, com preponderância do território.">
+<meta name="theme-color" content="#01366F">
+<title>Protocolo de Inteligência Territorial · PICAPS</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2301366F'/%3E%3Cpath d='M6 21 L12 9 L20 11 L26 19 L18 25Z' fill='%232A5D93' stroke='%23fff' stroke-width='1.6' stroke-linejoin='round'/%3E%3Ccircle cx='12' cy='9' r='2.6' fill='%235BBE73'/%3E%3Ccircle cx='26' cy='19' r='2.2' fill='%23fff'/%3E%3Ccircle cx='18' cy='25' r='2.2' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/barlowcond-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/barlow-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/style.css?v=2.1.0">
+<script src="assets/js/app.js?v=2.1.0" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir o menu" aria-expanded="false" aria-controls="sidebar"><span></span><span></span><span></span></button>
+  <a class="brand" href="#inicio" data-go="inicio">
+    <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 21 L11 8 L20 10 L27 19 L18 26Z" fill="#2A5D93" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><circle cx="11" cy="8" r="2.8" fill="#5BBE73"/><circle cx="27" cy="19" r="2.3" fill="#fff"/><circle cx="18" cy="26" r="2.3" fill="#fff"/></svg>
+    <span class="brand-t">Protocolo de <b>Inteligência Territorial</b></span>
+  </a>
+  <span class="brand-tag">PICAPS · versão 2.0</span>
+  <a class="top-docs" href="#documentos" data-go="documentos">Documentos</a>
+</header>
+
+<div class="scrim" id="scrim" hidden></div>
+<div class="shell">
+  <nav class="sidebar" id="sidebar" aria-label="Módulos do protocolo">
+    <div id="navList"></div>
+    <div class="side-foot">Os registros feitos aqui ficam só neste navegador. <a href="#dados" data-go="dados">Saiba mais</a></div>
+  </nav>
+
+  <main id="main" tabindex="-1">
+
+    <!-- INÍCIO -->
+    <section id="v-inicio" class="view" hidden>
+      <div class="hero">
+        <div class="hero-in">
+          <span class="series">Inteligência Territorial · PICAPS · versão 2.0</span>
+          <h1 class="cover-title"><span>Protocolo de</span><span>Inteligência</span><span class="g">Territorial</span></h1>
+          <p class="hero-sub">Articulação entre a vigilância epidemiológica tradicional e a vigilância popular em saúde, com preponderância do território.</p>
+          <p class="hero-auth">Wagner de Jesus Martins, Fernanda Machiner, Maria Eduarda Silva, Jeferson Martins de Castro</p>
+          <div class="hero-cta">
+            <a class="btn primary lg" href="#fundamentos" data-go="fundamentos">Começar pelos fundamentos</a>
+            <a class="btn light lg" href="#ciclo" data-go="ciclo">Ir direto ao ciclo</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <svg class="hero-waves" viewBox="0 0 1200 420" preserveAspectRatio="none"><path d="M0 230 C 260 190, 520 250, 780 230 C 950 215, 1080 175, 1200 135 L1200 420 L0 420Z" fill="#01366F"/><path d="M0 400 C 350 380, 560 290, 740 180 C 900 85, 1050 30, 1200 0 L1200 420 L0 420Z" fill="#007614"/></svg>
+          <svg class="territory" viewBox="-10 0 800 930" aria-hidden="true"><path d="M120 60 L330 20 L420 150 L330 260 L170 240 L90 150Z" fill="#2A5D93" stroke="#fff" stroke-opacity=".75" stroke-width="5" stroke-linejoin="round"/><path d="M330 20 L560 70 L600 230 L420 150Z" fill="#1F4F85" stroke="#fff" stroke-opacity=".75" stroke-width="5" stroke-linejoin="round"/><path d="M420 150 L600 230 L640 400 L470 430 L330 260Z" fill="#3B6EA3" stroke="#fff" stroke-opacity=".75" stroke-width="5" stroke-linejoin="round"/><path d="M90 150 L170 240 L150 420 L20 380 L0 230Z" fill="#2A5D93" stroke="#fff" stroke-opacity=".75" stroke-width="5" stroke-linejoin="round"/><path d="M170 240 L330 260 L470 430 L380 560 L210 540 L150 420Z" fill="#4A7DB0" stroke="#fff" stroke-opacity=".75" stroke-width="5" stroke-linejoin="round"/><path d="M600 230 L760 300 L780 470 L640 400Z" fill="#1F4F85" stroke="#fff" stroke-opacity=".75" stroke-width="5" stroke-linejoin="round"/><path d="M640 400 L780 470 L720 640 L560 620 L470 430Z" fill="#2F6299" stroke="#fff" stroke-opacity=".75" stroke-width="5" stroke-linejoin="round"/><path d="M20 380 L150 420 L210 540 L120 680 L10 600Z" fill="#3B6EA3" stroke="#fff" stroke-opacity=".75" stroke-width="5" stroke-linejoin="round"/><path d="M210 540 L380 560 L420 720 L250 790 L120 680Z" fill="#2A5D93" stroke="#fff" stroke-opacity=".75" stroke-width="5" stroke-linejoin="round"/><path d="M380 560 L470 430 L560 620 L520 760 L420 720Z" fill="#5788BA" stroke="#fff" stroke-opacity=".75" stroke-width="5" stroke-linejoin="round"/><path d="M560 620 L720 640 L690 800 L520 760Z" fill="#2F6299" stroke="#fff" stroke-opacity=".75" stroke-width="5" stroke-linejoin="round"/><path d="M250 790 L420 720 L520 760 L480 900 L300 920Z" fill="#3B6EA3" stroke="#fff" stroke-opacity=".75" stroke-width="5" stroke-linejoin="round"/><line x1="260" y1="150" x2="480" y2="140" stroke="#fff" stroke-opacity=".55" stroke-width="4" stroke-dasharray="10 9"/><line x1="480" y1="140" x2="540" y2="330" stroke="#fff" stroke-opacity=".55" stroke-width="4" stroke-dasharray="10 9"/><line x1="260" y1="150" x2="320" y2="400" stroke="#fff" stroke-opacity=".55" stroke-width="4" stroke-dasharray="10 9"/><line x1="540" y1="330" x2="320" y2="400" stroke="#fff" stroke-opacity=".55" stroke-width="4" stroke-dasharray="10 9"/><line x1="90" y1="290" x2="320" y2="400" stroke="#fff" stroke-opacity=".55" stroke-width="4" stroke-dasharray="10 9"/><line x1="540" y1="330" x2="700" y2="390" stroke="#fff" stroke-opacity=".55" stroke-width="4" stroke-dasharray="10 9"/><line x1="700" y1="390" x2="630" y2="530" stroke="#fff" stroke-opacity=".55" stroke-width="4" stroke-dasharray="10 9"/><line x1="320" y1="400" x2="480" y2="600" stroke="#fff" stroke-opacity=".55" stroke-width="4" stroke-dasharray="10 9"/><line x1="630" y1="530" x2="480" y2="600" stroke="#fff" stroke-opacity=".55" stroke-width="4" stroke-dasharray="10 9"/><line x1="90" y1="290" x2="110" y2="520" stroke="#fff" stroke-opacity=".55" stroke-width="4" stroke-dasharray="10 9"/><line x1="110" y1="520" x2="300" y2="650" stroke="#fff" stroke-opacity=".55" stroke-width="4" stroke-dasharray="10 9"/><line x1="300" y1="650" x2="480" y2="600" stroke="#fff" stroke-opacity=".55" stroke-width="4" stroke-dasharray="10 9"/><line x1="480" y1="600" x2="620" y2="710" stroke="#fff" stroke-opacity=".55" stroke-width="4" stroke-dasharray="10 9"/><line x1="300" y1="650" x2="390" y2="830" stroke="#fff" stroke-opacity=".55" stroke-width="4" stroke-dasharray="10 9"/><line x1="620" y1="710" x2="390" y2="830" stroke="#fff" stroke-opacity=".55" stroke-width="4" stroke-dasharray="10 9"/><line x1="630" y1="530" x2="620" y2="710" stroke="#fff" stroke-opacity=".55" stroke-width="4" stroke-dasharray="10 9"/><circle cx="260" cy="150" r="17" fill="#5BBE73" stroke="#fff" stroke-width="4"/><circle cx="480" cy="140" r="12" fill="#fff" stroke="none" stroke-width="4"/><circle cx="540" cy="330" r="12" fill="#fff" stroke="none" stroke-width="4"/><circle cx="90" cy="290" r="17" fill="#5BBE73" stroke="#fff" stroke-width="4"/><circle cx="320" cy="400" r="12" fill="#fff" stroke="none" stroke-width="4"/><circle cx="700" cy="390" r="12" fill="#fff" stroke="none" stroke-width="4"/><circle cx="630" cy="530" r="17" fill="#5BBE73" stroke="#fff" stroke-width="4"/><circle cx="110" cy="520" r="12" fill="#fff" stroke="none" stroke-width="4"/><circle cx="300" cy="650" r="12" fill="#fff" stroke="none" stroke-width="4"/><circle cx="480" cy="600" r="17" fill="#5BBE73" stroke="#fff" stroke-width="4"/><circle cx="620" cy="710" r="12" fill="#fff" stroke="none" stroke-width="4"/><circle cx="390" cy="830" r="12" fill="#fff" stroke="none" stroke-width="4"/></svg>
+          <span class="hero-year"><small>Brasília</small>2026</span>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="sec-head">
+          <span class="kicker">Finalidade</span>
+          <h2>Duas vigilâncias, <span class="g">um território que decide</span></h2>
+          <p class="lead">A vigilância tradicional produz dados padronizados, comparáveis e com força legal, mas não vê o que não chega aos serviços. A vigilância popular vê o que os sistemas não veem, no momento em que acontece, mas permanece invisível para as instituições quando não tem canais pactuados, tradução e retorno. Este protocolo as articula de modo que o território, por meio da Sala de Cooperação Social, tenha a primeira e a última palavra sobre o que se vigia, o que os dados significam e o que se exige dos serviços.</p>
+        </div>
+        <div class="commit" id="homeCommit"></div>
+      </div>
+
+      <div class="block">
+        <div class="sec-head">
+          <span class="kicker">Como usar</span>
+          <h2>Cada módulo é <span class="g">uma ferramenta de trabalho</span></h2>
+          <p class="lead">Comece por uma pergunta, siga o raciocínio e termine em ação registrada. Os módulos de operação guardam o que você registra neste aparelho, para usar na reunião seguinte.</p>
+        </div>
+        <div id="homeMods"></div>
+      </div>
+    </section>
+
+    <!-- FUNDAMENTOS -->
+    <section id="v-fundamentos" class="view" hidden>
+      <div class="sec-head">
+        <span class="kicker" data-k></span>
+        <h2>Fundamentos <span class="g">da Inteligência Territorial</span></h2>
+        <p class="lead">O que a IT é, de onde vem, como se relaciona com as duas vigilâncias e por que atravessa os quatro eixos da PICAPS sem ser um quinto eixo. Escolha um tema; toque em uma figura para ampliá-la.</p>
+      </div>
+      <div class="pills" id="fundPills" role="tablist" aria-label="Temas dos fundamentos"></div>
+      <div id="fundBody"></div>
+    </section>
+
+    <!-- MÉTODO -->
+    <section id="v-metodo" class="view" hidden>
+      <div class="sec-head">
+        <span class="kicker" data-k></span>
+        <h2>O método: <span class="g">como pensar antes de agir</span></h2>
+        <p class="lead">Três compromissos, oito regras de ouro e dois instrumentos de leitura que nunca se somam, sempre lidos sobre o mapa da cartografia social. Use o teste no fim da página para treinar a escolha do instrumento certo.</p>
+      </div>
+      <div class="stack">
+        <div class="commit" id="commit"></div>
+        <div class="sheet stack">
+          <h3>A sequência de raciocínio que vale para todo o protocolo</h3>
+          <div class="think" id="think"></div>
+          <p class="note">Um número nunca pula da coluna “dado” para a coluna “ação”. Ele passa pela Sala.</p>
+        </div>
+        <figure class="fig" data-zoom="metodo" data-cap="O método em uma imagem: duas vigilâncias, um mapa, uma Sala que decide"></figure>
+        <div class="sheet stack">
+          <h3>Quatro produtos mostram que a articulação funcionou</h3>
+          <div class="products" id="products"></div>
+          <p class="note">Se nenhum deles aparece, o ciclo está produzindo dados, não inteligência.</p>
+        </div>
+        <div class="sheet">
+          <h3 style="margin-bottom:12px">Regras de ouro</h3>
+          <div class="rules" id="rules"></div>
+        </div>
+        <div class="cards2" id="instr"></div>
+        <div class="sheet stack">
+          <h3>Regras de separação</h3>
+          <div class="seprules" id="seprules"></div>
+        </div>
+        <div class="sheet stack">
+          <div class="row" style="justify-content:space-between"><h3>Teste rápido: qual instrumento responde?</h3><span class="note" id="whichScore"></span></div>
+          <div class="which">
+            <div class="opts" id="whichOpts"></div>
+            <div id="whichOut" class="stack"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CICLO -->
+    <section id="v-ciclo" class="view" hidden>
+      <div class="sec-head">
+        <span class="kicker" data-k></span>
+        <h2>Ciclo de <span class="g">Inteligência Territorial</span></h2>
+        <p class="lead">Cinco fases, cada uma com sua pergunta-guia. Escolha a fase para ver quem faz, quando, com o quê, os passos, o sinal de que algo vai mal e os erros de raciocínio a evitar. O checklist fica salvo neste aparelho.</p>
+      </div>
+      <div class="cycle-layout">
+        <div class="sheet stack">
+          <svg class="cycle-svg" id="cycle" viewBox="0 0 420 420" role="img" aria-label="Ciclo de Inteligência Territorial em cinco fases"></svg>
+          <p class="note" style="text-align:center">Alerta crítico salta de F1 direto para F4 (72 horas) e volta à Sala na reunião seguinte.</p>
+          <button class="btn ghost" type="button" data-fig="cit" data-cap="Ciclo de Inteligência Territorial: cinco fases e seis ritmos">Ver a figura do ciclo</button>
+        </div>
+        <div class="sheet phase-panel" id="phasePanel"></div>
+      </div>
+      <div class="sheet stack" style="margin-top:18px">
+        <h3>Seis ritmos encaixados</h3>
+        <p class="note">O contínuo alimenta o semanal, que alimenta o mensal, e assim por diante.</p>
+        <div class="tbl-wrap"><table class="dt" id="ritmos"></table></div>
+      </div>
+    </section>
+
+    <!-- LEITOR -->
+    <section id="v-leitor" class="view" hidden>
+      <div class="sec-head">
+        <span class="kicker" data-k></span>
+        <h2>Leitor <span class="g">de sinais</span></h2>
+        <p class="lead">Para cada microárea e agravo do cruzamento mensal (F2): responda às perguntas e o leitor monta a classificação, o raciocínio, a ação, quem age primeiro e a pergunta que vai para a SCS. Ele não decide: prepara a deliberação.</p>
+      </div>
+      <div class="grid2">
+        <div class="sheet stack">
+          <div class="row">
+            <label class="f" style="flex:1 1 140px">Microárea<input id="lsMa" placeholder="ex.: MA 07"></label>
+            <label class="f" style="flex:1 1 180px">Agravo ou categoria<input id="lsAg" placeholder="ex.: arbovirose, alagamento"></label>
+          </div>
+          <div id="lsQs"></div>
+        </div>
+        <div class="stack">
+          <div class="sheet stack">
+            <div class="row" style="justify-content:space-between"><h3>Matriz de leitura</h3><button class="btn ghost sm" type="button" data-fig="matriz" data-cap="Matriz de leitura de sinais">Ver figura</button></div>
+            <div class="mx" id="lsMx"></div>
+          </div>
+          <div class="sheet stack" id="lsOut"></div>
+        </div>
+      </div>
+      <div class="sheet stack" style="margin-top:18px">
+        <h3>Quem age primeiro: o lugar e as pessoas</h3>
+        <p class="note">Antes de levar um ponto do mapa à SCS, leia na cartografia social e nos cadastros se o risco é sobretudo do lugar, das pessoas ou dos dois. Isso orienta quem age primeiro.</p>
+        <div class="tbl-wrap"><table class="dt" id="exsTbl"></table></div>
+      </div>
+      <div class="sheet stack" style="margin-top:18px">
+        <div class="row" style="justify-content:space-between"><h3>Pauta para a próxima reunião (bloco 4)</h3><button class="btn ghost" id="lsClear" type="button">Limpar pauta</button></div>
+        <div class="list" id="lsPauta"></div>
+      </div>
+    </section>
+
+    <!-- ALERTA -->
+    <section id="v-alerta" class="view" hidden>
+      <div class="sec-head">
+        <span class="kicker" data-k></span>
+        <h2>Alerta crítico: <span class="g">relógio de 72 horas</span></h2>
+        <p class="lead">Registre a hora zero de cada alerta de urgência máxima e marque os passos à medida que acontecem. O relógio mostra quem deve agir agora e quando escalonar. A ausência de resposta também é registro.</p>
+      </div>
+      <div class="grid2">
+        <div class="sheet stack">
+          <h3>Novo alerta crítico</h3>
+          <div class="row">
+            <label class="f" style="flex:1 1 140px">Microárea<input id="alMa" placeholder="ex.: MA 03"></label>
+            <label class="f" style="flex:1 1 160px">Categoria<input id="alCat" placeholder="ex.: deslizamento"></label>
+          </div>
+          <label class="f">Hora zero (registro na Ágora ou no formulário físico)<input type="datetime-local" id="alT0"></label>
+          <div class="checks"><label><input type="checkbox" id="alCont"> <span>Ágora fora do ar: alerta em formulário físico (modo contingência)</span></label></div>
+          <div class="row"><button class="btn primary" id="alAdd" type="button">Registrar alerta</button><button class="btn ghost" id="alDemo" type="button">Carregar exemplo</button><button class="btn ghost" type="button" data-fig="f72" data-cap="Fluxo do alerta crítico em 72 horas">Ver o fluxo</button></div>
+          <div class="note">Hora zero conta do registro, não da reunião.</div>
+        </div>
+        <div class="sheet stack">
+          <h3>Resposta a alertas críticos (V6)</h3>
+          <div class="sum" id="alSum"></div>
+          <p class="note">Calculado sobre os alertas desta lista já fechados (respondidos) ou vencidos. Metas: mínima 80%, recomendada 95%.</p>
+        </div>
+      </div>
+      <div class="list" id="alList" style="margin-top:18px"></div>
+    </section>
+
+    <!-- TRIAGEM -->
+    <section id="v-triagem" class="view" hidden>
+      <div class="sec-head">
+        <span class="kicker" data-k></span>
+        <h2>Triagem em <span class="g">quatro registros de ação</span></h2>
+        <p class="lead">Para cada encaminhamento deliberado, responda às perguntas na ordem. A primeira resposta “sim” define o registro, o prazo, quem é acionado e onde ele conta no Painel.</p>
+      </div>
+      <div class="grid2">
+        <div class="sheet stack">
+          <label class="f">Encaminhamento<input id="trTxt" placeholder="ex.: limpeza do córrego da rua 12"></label>
+          <div id="trQs"></div>
+        </div>
+        <div class="sheet stack" id="trOut"></div>
+      </div>
+      <div class="sheet stack" style="margin-top:18px">
+        <h3>Registros de ação</h3>
+        <div class="tbl-wrap"><table class="dt" id="regTbl"></table></div>
+        <p class="note">Todo encaminhamento sai da ata com responsável, prazo e registro. A falta de resposta também é registrada: é o principal insumo do advocacy.</p>
+      </div>
+    </section>
+
+    <!-- VISIBILIZAÇÃO -->
+    <section id="v-visib" class="view" hidden>
+      <div class="sec-head">
+        <span class="kicker" data-k></span>
+        <h2>Visibilização: <span class="g">do território ao registro oficial</span></h2>
+        <p class="lead">O que o território revela e o serviço confirma em verificação conjunta passa a constar dos sistemas oficiais. Acompanhe cada invisibilidade em quatro passos; as incorporadas no trimestre contam em V5.</p>
+      </div>
+      <div class="grid2">
+        <div class="sheet stack">
+          <h3>Nova invisibilidade identificada</h3>
+          <label class="f">Tipo<select id="viTipo"></select></label>
+          <div class="row">
+            <label class="f" style="flex:1 1 110px">Microárea<input id="viMa"></label>
+            <label class="f" style="flex:2 1 200px">Descrição<input id="viDesc" placeholder="ex.: 14 casas na encosta sem cadastro"></label>
+          </div>
+          <div id="viHint" class="result-card" style="--c:var(--green)"></div>
+          <div class="row"><button class="btn primary" id="viAdd" type="button">Registrar</button></div>
+        </div>
+        <div class="sheet stack">
+          <h3>V5 · Visibilização</h3>
+          <div class="sum" id="viSum"></div>
+          <p class="note">Meta mínima: ao menos 1 incorporação por trimestre; recomendada: tendência crescente nos primeiros quatro trimestres.</p>
+          <div class="status-box" style="--c:var(--warn)"><b>Revisão de medida</b><span class="small">Quando a incorporação corrige um registro oficial (área de risco, domicílios, famílias no Cadastro Único), é revisão de medida: a área de risco reconhecida hoje existia antes, e a correção não pode aparecer como piora do território.</span></div>
+        </div>
+      </div>
+      <div class="list" id="viList" style="margin-top:18px"></div>
+    </section>
+
+    <!-- REUNIÃO -->
+    <section id="v-reuniao" class="view" hidden>
+      <div class="sec-head">
+        <span class="kicker" data-k></span>
+        <h2>Reunião deliberativa <span class="g">da SCS</span></h2>
+        <p class="lead">Sete blocos, cada um responde a uma pergunta. O relógio acompanha o tempo; presença, contestações, prioridades e encaminhamentos geram a ata ao final.</p>
+      </div>
+      <div class="grid2">
+        <div class="sheet stack">
+          <div class="row" style="justify-content:space-between">
+            <label class="f">Data da reunião<input type="date" id="mtDate"></label>
+            <div class="clock" id="mtClock">00:00</div>
+          </div>
+          <div class="row"><button class="btn primary" id="mtGo" type="button">Iniciar</button><button class="btn" id="mtNext" type="button">Próximo bloco</button><button class="btn ghost" id="mtReset" type="button">Zerar</button></div>
+          <div class="qbox" id="mtQ"></div>
+          <div class="blocks" id="mtBlocks"></div>
+        </div>
+        <div class="sheet stack">
+          <h3>1 · Presença por segmento</h3>
+          <div class="seg-grid checks" id="mtSegs"></div>
+          <div id="mtV9"></div>
+        </div>
+      </div>
+      <div class="sheet stack" style="margin-top:18px">
+        <h3>2 · Retorno dos encaminhamentos anteriores</h3>
+        <div class="tbl-wrap"><table class="edit" id="mtRet"></table></div>
+      </div>
+      <div class="grid2" style="margin-top:18px">
+        <div class="sheet stack">
+          <h3>4 · Convergências, divergências e contestações</h3>
+          <div class="list" id="mtPauta"></div>
+          <div class="row">
+            <input id="ctDado" placeholder="Dado contestado" aria-label="Dado contestado">
+            <select id="ctSaida" aria-label="Encaminhamento da contestação"><option>Verificação conjunta</option><option>Pedido de correção à fonte</option><option>Divergência registrada</option></select>
+            <button class="btn" id="ctAdd" type="button">Registrar contestação</button>
+          </div>
+          <div class="list" id="ctList"></div>
+        </div>
+        <div class="sheet stack">
+          <h3>5 · Priorização pela Matriz UIC</h3>
+          <p class="note">Notas de 1 a 5 por <b>problema</b>, nunca por indicador: urgência (quanto tempo podemos esperar?), impacto (quanto afeta a vida e a saúde das famílias?) e capacidade de agência (quanto o território e os serviços locais conseguem agir?). A soma ordena a discussão; a plenária pode reordenar registrando o motivo.</p>
+          <div class="row"><input id="uicTxt" placeholder="Problema" aria-label="Problema" style="flex:1 1 200px"><button class="btn" id="uicAdd" type="button">Adicionar</button></div>
+          <div class="tbl-wrap"><table class="uic" id="uicTbl"></table></div>
+        </div>
+      </div>
+      <div class="sheet stack" style="margin-top:18px">
+        <h3>6 · Encaminhamentos</h3>
+        <div class="row">
+          <input id="enTxt" placeholder="O quê" aria-label="O quê" style="flex:2 1 200px">
+          <input id="enResp" placeholder="Responsável" aria-label="Responsável" style="flex:1 1 140px">
+          <select id="enReg" aria-label="Registro de ação"></select>
+          <button class="btn" id="enAdd" type="button">Adicionar</button>
+        </div>
+        <div class="tbl-wrap"><table class="edit" id="enTbl"></table></div>
+      </div>
+      <div class="sheet stack" style="margin-top:18px">
+        <div class="row" style="justify-content:space-between"><h3>7 · Ata</h3><button class="btn primary" id="ataCopy" type="button">Copiar ata</button></div>
+        <textarea class="ata" id="ata" readonly aria-label="Ata da reunião"></textarea>
+      </div>
+    </section>
+
+    <!-- PAINEL -->
+    <section id="v-painel" class="view" hidden>
+      <div class="sec-head">
+        <span class="kicker" data-k></span>
+        <h2>Painel de <span class="g">Vigilância Integrada</span></h2>
+        <p class="lead">Nove indicadores, não agregados, que respondem a quatro perguntas. Informe o valor do período atual e do anterior: o painel aplica metas, gatilhos e a leitura correta de cada sinal. Metas propostas, a pactuar na SCS e com a gestão no ciclo inaugural.</p>
+      </div>
+      <div class="sheet">
+        <div class="row" style="justify-content:space-between;margin-bottom:8px">
+          <div class="legend"><span class="chip dot s-crit">abaixo da mínima</span><span class="chip dot s-warn">entre mínima e recomendada</span><span class="chip dot s-ok">na recomendada</span></div>
+          <div class="row"><button class="btn ghost" id="pvDemo" type="button">Carregar exemplo</button><button class="btn ghost" id="pvClear" type="button">Limpar</button></div>
+        </div>
+        <div id="pvList"></div>
+      </div>
+      <div class="grid2" style="margin-top:18px">
+        <div class="sheet stack">
+          <h3>Gatilhos acionados</h3>
+          <div class="triggers" id="pvTrig"></div>
+        </div>
+        <div class="sheet stack">
+          <h3>Como ler</h3>
+          <ul class="bul">
+            <li><b>V1 e V2 não têm meta.</b> São lidos juntos, sobre o mapa da cartografia social, com a matriz de leitura de sinais.</li>
+            <li><b>Confirmação baixa entre alertas verificados</b> pede revisão de categorias e formação; <b>muitos alertas não verificados</b> indicam falha do serviço, e não da vigilância popular.</li>
+            <li><b>V6 a V8 medem a exigibilidade:</b> se o território é ouvido. Sem eles, a vigilância popular pode registrar muito e não mudar nada.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- AGENDA -->
+    <section id="v-agenda" class="view" hidden>
+      <div class="sec-head">
+        <span class="kicker" data-k></span>
+        <h2>Agenda dos <span class="g">seis ritmos</span></h2>
+        <p class="lead">Informe o início do ciclo de operação e o dia fixo da reunião. A agenda distribui o mensal, o trimestral, o semestral e o anual; o contínuo e o semanal seguem a semana-tipo.</p>
+      </div>
+      <div class="sheet">
+        <div class="agenda-controls">
+          <label class="f">Início do ciclo<input type="date" id="agStart"></label>
+          <label class="f">Reunião mensal<select id="agNth"><option value="1">1ª</option><option value="2">2ª</option><option value="3" selected>3ª</option><option value="4">4ª</option><option value="-1">Última</option></select></label>
+          <label class="f">Dia da semana<select id="agDow"><option value="1">segunda</option><option value="2">terça</option><option value="3">quarta</option><option value="4" selected>quinta</option><option value="5">sexta</option><option value="6">sábado</option></select></label>
+          <label class="f">Horizonte<select id="agMonths"><option value="3">3 meses</option><option value="6">6 meses</option><option value="12" selected>12 meses</option><option value="24">24 meses</option></select></label>
+          <div class="row" style="align-self:end"><button class="btn" id="agCopy" type="button">Copiar agenda</button></div>
+        </div>
+        <div class="grid2" style="margin-bottom:12px">
+          <div class="stack"><h3>Semana-tipo (cada SCS fixa a sua)</h3><div id="agWeek" class="list"></div></div>
+          <div class="stack"><h3>Legenda dos ritmos</h3><div class="legend" id="agLegend"></div></div>
+        </div>
+        <div id="agList"></div>
+      </div>
+    </section>
+
+    <!-- PAPÉIS -->
+    <section id="v-papeis" class="view" hidden>
+      <div class="sec-head">
+        <span class="kicker" data-k></span>
+        <h2>Papéis e <span class="g">responsabilidades</span></h2>
+        <p class="lead">Sete atores. Escolha um para ver o que ele faz em cada fase. Três pontos: responsabilidade primária; dois: compartilhada; um: apoio.</p>
+      </div>
+      <div class="sheet">
+        <div class="actor-pick" id="actorPick"></div>
+        <div class="tbl-wrap" style="margin-bottom:16px"><table class="matrix" id="actorMx"></table></div>
+        <div class="role-phases" id="actorPh"></div>
+      </div>
+    </section>
+
+    <!-- GOVERNANÇA -->
+    <section id="v-gov" class="view" hidden>
+      <div class="sec-head">
+        <span class="kicker" data-k></span>
+        <h2>Governança e <span class="g">escalonamento</span></h2>
+        <p class="lead">Escolha a situação. O simulador mostra em que nível ela se resolve, o que precisa ser levado e como a decisão volta à SCS. Subsidiariedade ascendente: só sobe o que não se resolve abaixo.</p>
+      </div>
+      <div class="grid2">
+        <div class="sheet stack"><div class="row" style="justify-content:space-between"><h3>Situação</h3><button class="btn ghost sm" type="button" data-fig="gov" data-cap="Governança em três níveis e subsidiariedade ascendente">Ver figura</button></div><div class="opts" id="govOpts"></div></div>
+        <div class="sheet stack"><div class="levels" id="govLv"></div><div id="govOut" class="esc-out"></div></div>
+      </div>
+    </section>
+
+    <!-- IMPLANTAÇÃO -->
+    <section id="v-impl" class="view" hidden>
+      <div class="sec-head">
+        <span class="kicker" data-k></span>
+        <h2>Implantação <span class="g">e prontidão</span></h2>
+        <p class="lead">O ciclo de operação só começa depois das seis etapas da metodologia PICAPS e da pactuação com os serviços. Cada etapa tem uma pergunta que precisa estar respondida antes da seguinte.</p>
+      </div>
+      <div class="grid2">
+        <div class="sheet" id="implSt"></div>
+        <div class="sheet stack">
+          <div class="row" style="justify-content:space-between"><h3>Checklist de prontidão</h3><span class="mono small" id="implPct"></span></div>
+          <div class="progress"><i id="implBar"></i></div>
+          <div class="checks" id="implCk"></div>
+          <div id="implOut"></div>
+        </div>
+      </div>
+      <div class="sheet stack" style="margin-top:18px">
+        <h3>Parâmetros a pactuar no ciclo inaugural</h3>
+        <div class="tbl-wrap"><table class="dt" id="paramTbl"></table></div>
+      </div>
+    </section>
+
+    <!-- RISCOS -->
+    <section id="v-riscos" class="view" hidden>
+      <div class="sec-head">
+        <span class="kicker" data-k></span>
+        <h2>Ameaças, sinais <span class="g">e contingência</span></h2>
+        <p class="lead">Quatro ameaças recorrentes podem esvaziar a articulação. Cada uma tem um sinal que aparece antes do colapso e uma contramedida definida. O modo contingência mantém o ciclo sem a Plataforma Ágora.</p>
+      </div>
+      <div class="threats" id="threats"></div>
+      <div class="sheet stack" style="margin-top:18px">
+        <h3>Modo contingência (Ágora indisponível)</h3>
+        <div class="checks" id="contCk"></div>
+      </div>
+    </section>
+
+    <!-- DOCUMENTOS -->
+    <section id="v-documentos" class="view" hidden>
+      <div class="sec-head">
+        <span class="kicker" data-k></span>
+        <h2>Documentos <span class="g">de referência</span></h2>
+        <p class="lead">Os três documentos de referência do Protocolo de Inteligência Territorial, na identidade visual da série PICAPS. Baixe em PDF para ler ou em Word para editar.</p>
+      </div>
+      <div class="docs" id="docs"></div>
+    </section>
+
+    <!-- DADOS -->
+    <section id="v-dados" class="view" hidden>
+      <div class="sec-head">
+        <span class="kicker">Seus registros</span>
+        <h2>Dados <span class="g">e privacidade</span></h2>
+        <p class="lead">Alertas, reuniões, encaminhamentos, painel e checklists ficam apenas no navegador de quem usa. Nada é enviado a servidor algum, nem quando a aplicação está publicada na internet.</p>
+      </div>
+      <div class="grid2">
+        <div class="sheet stack">
+          <h3>Cópia de segurança</h3>
+          <p class="small">Cada navegador e cada aparelho tem seus próprios registros. Exporte para guardar ou levar a outro computador; importe para restaurar.</p>
+          <div class="row"><button class="btn" id="bkExport" type="button">Exportar meus registros (.json)</button><label class="btn ghost file">Importar registros<input type="file" id="bkImport" accept="application/json,.json"></label></div>
+          <div><button class="btn danger" id="bkClear" type="button">Apagar todos os registros</button></div>
+        </div>
+        <div class="status-box" style="--c:var(--crit)"><b>Não registre dados nominais de saúde</b><span class="small">A aplicação é instrumento de apoio e de formação. Ela não substitui a Plataforma Ágora nem os sistemas oficiais. Use microáreas, categorias e contagens, nunca nomes, endereços ou diagnósticos de pessoas.</span></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer class="site-foot">
+  <svg class="foot-waves" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 70 C 300 40, 600 95, 900 70 C 1030 60, 1120 40, 1200 25 L1200 120 L0 120Z" fill="#007614"/><path d="M0 95 C 320 80, 640 110, 900 95 C 1040 88, 1130 80, 1200 72 L1200 120 L0 120Z" fill="#01366F"/></svg>
+  <div class="foot-in">
+    <div class="logos"><img src="assets/img/logos.png" alt="PICAPS · Fiocruz Brasília · SUS · Ministério da Saúde" width="1226" height="142" loading="lazy"></div>
+    <div class="foot-grid">
+      <div><span class="fk">Autoria</span><p>Wagner de Jesus Martins, Fernanda Machiner, Maria Eduarda Silva, Jeferson Martins de Castro</p></div>
+      <div><span class="fk">Realização</span><p>Fundação Oswaldo Cruz – Fiocruz Brasília · CoLaboratório de Ciência, Tecnologia, Inovação e Sociedade (CTIS) · Plataforma de Inteligência Cooperativa com a Atenção Primária à Saúde (PICAPS)</p></div>
+      <div><span class="fk">Como citar</span><p>MARTINS, W. J.; MACHINER, F.; SILVA, M. E.; CASTRO, J. M. <b>Protocolo de Inteligência Territorial</b>. Versão 2.0. Brasília: Fiocruz Brasília/CoLaboratório CTIS/PICAPS, 2026.</p></div>
+    </div>
+    <p class="foot-note">Os registros desta aplicação ficam apenas neste navegador. Não registre dados nominais de saúde. · <a href="#documentos" data-go="documentos">Documentos</a> · <a href="#dados" data-go="dados">Dados e privacidade</a></p>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-modal="true" aria-label="Figura ampliada">
+  <div class="lb-bar"><span id="lbCap"></span><button class="lb-x" id="lbClose" type="button" aria-label="Fechar">×</button></div>
+  <div class="lb-img"><img id="lbImg" alt=""></div>
+</div>
+<noscript><p style="padding:16px">Esta aplicação precisa de JavaScript habilitado no navegador.</p></noscript>
+</body>
+</html>
