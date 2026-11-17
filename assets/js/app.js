@@ -152,10 +152,10 @@ const EXTRA_VIEWS = ["dados"];
 const numOf = id => { const i = VIEWS.findIndex(v => v.id === id); return i <= 0 ? "" : pad(i); };
 let curView = "inicio";
 function buildNav(){
-  $("#navList").innerHTML = NAV.map(g => '<div class="nav-g">' + g.g + "</div>" + g.items.map(it => '<a class="nav-a" href="#' + it[0] + '" data-go="' + it[0] + '"><span class="k">' + (numOf(it[0]) || "··") + "</span><span>" + it[1] + "</span></a>").join("")).join("");
+  $("#navList").innerHTML = NAV.map(g => '<div class="nav-g">' + g.g + "</div>" + g.items.map(it => '<a class="nav-a" href="#' + it[0] + '" data-go="' + it[0] + '"><span class="k">' + (numOf(it[0]) || "—") + "</span><span>" + it[1] + "</span></a>").join("")).join("");
   document.querySelectorAll(".view .kicker[data-k]").forEach(k => {
     const id = k.closest(".view").id.slice(2), v = VIEWS.find(x => x.id === id);
-    if(v) k.innerHTML = '<span class="n">' + numOf(id) + "</span>" + v.g;
+    if(v) k.innerHTML = v.g + '<span class="sep">/</span><span class="n">' + numOf(id) + "</span>";
   });
   $("#homeMods").innerHTML = NAV.map(g => '<div class="modgroup"><h3>' + g.g + '</h3><div class="modgrid">' + g.items.filter(it => it[0] !== "inicio").map(it => '<a class="modcard" href="#' + it[0] + '" data-go="' + it[0] + '"><span class="k">' + numOf(it[0]) + "</span><b>" + it[1] + "</b><span>" + it[2] + "</span></a>").join("") + "</div></div>").join("");
 }
@@ -250,8 +250,8 @@ function drawCycle(){
   const cx = 210, cy = 210, R = 140, nr = 44;
   const ang = i => -90 + i * 72;
   let s = '<defs><marker id="cy-ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--grey-2)"/></marker><marker id="cy-ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--crit)"/></marker></defs>';
-  s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + (R - 64) + '" fill="var(--tg)" stroke="var(--green)" stroke-width="1.5" stroke-dasharray="4 4"/>';
-  s += '<text x="' + cx + '" y="' + (cy - 6) + '" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="700" font-size="19" fill="var(--navy)">Sala de</text><text x="' + cx + '" y="' + (cy + 14) + '" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="700" font-size="19" fill="var(--navy)">Cooperação</text><text x="' + cx + '" y="' + (cy + 34) + '" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="700" font-size="19" fill="var(--navy)">Social</text>';
+  s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + (R - 64) + '" fill="var(--tn)" stroke="var(--line)" stroke-width="1.5"/>';
+  s += '<text x="' + cx + '" y="' + (cy - 6) + '" text-anchor="middle" font-family="Barlow, sans-serif" font-weight="700" font-size="19" fill="var(--navy)">Sala de</text><text x="' + cx + '" y="' + (cy + 14) + '" text-anchor="middle" font-family="Barlow, sans-serif" font-weight="700" font-size="19" fill="var(--navy)">Cooperação</text><text x="' + cx + '" y="' + (cy + 34) + '" text-anchor="middle" font-family="Barlow, sans-serif" font-weight="700" font-size="19" fill="var(--navy)">Social</text>';
   for(let i = 0; i < 5; i++){
     const a1 = ang(i) + 20, a2 = ang(i + 1) - 20, p1 = polar(cx, cy, R, a1), p2 = polar(cx, cy, R, a2);
     s += '<path d="M' + p1[0].toFixed(1) + " " + p1[1].toFixed(1) + " A" + R + " " + R + " 0 0 1 " + p2[0].toFixed(1) + " " + p2[1].toFixed(1) + '" fill="none" stroke="var(--grey-2)" stroke-width="2" marker-end="url(#cy-ar)"/>';
@@ -260,7 +260,7 @@ function drawCycle(){
   s += '<path d="M' + f1[0].toFixed(1) + " " + f1[1].toFixed(1) + " Q" + (cx - 120) + " " + (cy - 10) + " " + f4[0].toFixed(1) + " " + f4[1].toFixed(1) + '" fill="none" stroke="var(--crit)" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#cy-ar2)" opacity=".85"/>';
   PHASES.forEach((p, i) => {
     const [x, y] = polar(cx, cy, R, ang(i)), sel = i === phaseSel;
-    s += '<g class="node" tabindex="0" role="button" aria-label="' + p.id + " " + p.n + '" data-i="' + i + '"><circle class="ring" cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + nr + '" fill="' + (sel ? p.c : "var(--sheet)") + '" stroke="' + p.c + '" stroke-width="2.5"/><text x="' + x.toFixed(1) + '" y="' + (y + 2).toFixed(1) + '" text-anchor="middle" font-family="Barlow Condensed, Arial Narrow, sans-serif" font-weight="700" font-size="24" fill="' + (sel ? "var(--sheet)" : p.c) + '">' + p.id + '</text><text x="' + x.toFixed(1) + '" y="' + (y + 19).toFixed(1) + '" text-anchor="middle" font-family="Barlow, sans-serif" font-size="10.5" font-weight="600" fill="' + (sel ? "var(--sheet)" : "var(--ink-2)") + '">' + esc(p.n.split(" ")[0]) + "</text></g>";
+    s += '<g class="node" tabindex="0" role="button" aria-label="' + p.id + " " + p.n + '" data-i="' + i + '"><circle class="ring" cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + nr + '" fill="' + (sel ? p.c : "var(--sheet)") + '" stroke="' + p.c + '" stroke-width="2.5"/><text x="' + x.toFixed(1) + '" y="' + (y + 2).toFixed(1) + '" text-anchor="middle" font-family="Barlow, sans-serif" font-weight="700" font-size="24" fill="' + (sel ? "var(--sheet)" : p.c) + '">' + p.id + '</text><text x="' + x.toFixed(1) + '" y="' + (y + 19).toFixed(1) + '" text-anchor="middle" font-family="Barlow, sans-serif" font-size="10.5" font-weight="600" fill="' + (sel ? "var(--sheet)" : "var(--ink-2)") + '">' + esc(p.n.split(" ")[0]) + "</text></g>";
   });
   $("#cycle").innerHTML = s;
 }
